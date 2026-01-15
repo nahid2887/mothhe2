@@ -8,7 +8,7 @@ echo "Starting Django application..."
 # Wait for PostgreSQL if configured
 if [ -n "$DB_HOST" ]; then
     echo "Waiting for PostgreSQL database at $DB_HOST:$DB_PORT..."
-    while ! nc -z "$DB_HOST" "$DB_PORT"; do
+    until pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "${DB_USER:-postgres}" > /dev/null 2>&1; do
         sleep 1
     done
     echo "PostgreSQL is ready!"
