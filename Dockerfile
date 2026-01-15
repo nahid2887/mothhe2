@@ -32,10 +32,10 @@ RUN mkdir -p /app/staticfiles /app/media
 
 # Copy entrypoint script
 COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 # Expose port
 EXPOSE 8005
 
-# Run entrypoint script
-ENTRYPOINT ["./entrypoint.sh"]
+# Run entrypoint script with bash to avoid permission issues on Windows
+ENTRYPOINT ["bash", "/app/entrypoint.sh"]
