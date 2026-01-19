@@ -2571,7 +2571,7 @@ class GeneratePDFFromBankDataView(APIView):
         styles = getSampleStyleSheet()
         
         # Logo and Title side by side
-        logo_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'images', 'logo.png')
+        logo_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ssl', 'logo.png')
         
         title_style = ParagraphStyle(
             'CustomTitle',
