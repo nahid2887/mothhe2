@@ -1,41 +1,35 @@
-# Use official Python runtime as base image
-FROM python:3.11-slim
+FROM python:3.11.13-slim-bullseye
+ 
+RUN mkdir /app
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PIP_NO_CACHE_DIR=1
-
-# Set work directory
 WORKDIR /app
+ 
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# Install system dependencies (including PostgreSQL client)
-RUN apt-get update && apt-get install -y \
-    gcc \
-    postgresql-client \
+ENV PYTHONUNBUFFERED=1
+ 
+# Install system dependencies
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+
+    build-essential \
+
     libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
+    netcat \
+
+    poppler-utils \
+&& rm -rf /var/lib/apt/lists/*
+ 
+RUN pip install --upgrade pip
+ 
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt && \
-    pip install gunicorn==21.2.0
-
-# Copy project
+RUN pip install --no-cache-dir -r requirements.txt
+ 
 COPY . .
-
-# Create directory for static files and media
-RUN mkdir -p /app/staticfiles /app/media
-
-# Copy entrypoint script
-COPY entrypoint.sh .
-RUN chmod +x /app/entrypoint.sh
-
-# Expose port
-EXPOSE 8005
-
-# Run entrypoint script with bash to avoid permission issues on Windows
-ENTRYPOINT ["bash", "/app/entrypoint.sh"]
+ 
+EXPOSE 8500
+ 
+CMD ["bash", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8500"]
+ 
