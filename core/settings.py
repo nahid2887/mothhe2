@@ -199,6 +199,10 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://server.dokploy.193-203-164-106.sslip.io',
+]
+
 PLAID_PRODUCTS = ['transactions', 'auth']
 PLAID_COUNTRY_CODES = ['US']
 CORS_ALLOW_ALL_ORIGINS = True  # Only for development!
