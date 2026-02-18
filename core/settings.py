@@ -155,7 +155,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # Or your email provider's SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nahid2887@gmail.com'  # Replace with your email
-EMAIL_HOST_PASSWORD = 'qsqe dgvs qywh umbz'  # Replace with your password or app password
+EMAIL_HOST_PASSWORD = 'xuvq hgxz fhzr hzvx'  # Replace with your password or app password
 
 # Plaid settings
 PLAID_CLIENT_ID = '68b1be404904f40022b28f70'  
