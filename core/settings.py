@@ -154,7 +154,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Or your email provider's SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'nahid2887@gmail.com'  # Replace with your email
+EMAIL_HOST_USER = 'nahid288724@gmail.com'  # Replace with your email
 EMAIL_HOST_PASSWORD = 'xuvq hgxz fhzr hzvx'  # Replace with your password or app password
 
 # Plaid settings
